@@ -7,12 +7,12 @@ const parts = require('./libs/parts')
 const merge = require('webpack-merge')
 const validate = require('webpack-validator')
 const PATHS = {
-  app: path.join(__dirname, 'src', 'main.js'),
+  app: path.join(__dirname, 'src'),
   build: path.join(__dirname, 'bin')
 }
 
 const common = {
-  entry: PATHS.app,
+  entry: PATHS.app + '/main.js',
   output: {
     path: PATHS.build,
     filename: 'bundle.js'
@@ -32,26 +32,20 @@ let config;
 switch(process.env.npm_lifecycle_event) {
   case 'build':
     //minifys js for production//
-    config = merge(common, {
-      plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-          compress: {
-            warnings: false,
-          },
-          output: {
-            comments: false,
-          }
-        })
-      ]
-    });
+    config = merge(
+      common,
+      parts.uglifyJs()
+    );
     break;
+
   default:
     config = merge(
       common, 
       parts.devServer({
         host: process.env.HOST,
         port: process.env.PORT
-      })
+      }),
+      parts.setupCSS(PATHS.app)
     );
 }
 

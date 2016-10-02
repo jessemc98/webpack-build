@@ -35,3 +35,20 @@ exports.devServer = function(options) {
     ]
   };
 }
+
+exports.uglifyJs = function() {
+  return {
+    plugins: [
+      new webpack.optimize.UglifyJsPlugin(
+        {
+          compress: {
+            warnings: false,
+          },
+          output: {
+            comments: false,
+          }
+        }
+      )
+    ]
+  }
+}
