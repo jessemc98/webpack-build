@@ -1,0 +1,14 @@
+{
+  "name": "import-images",
+  "version": "1.0.0",
+  "description": "example of webpack image/svg imports",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jesse mcintosh",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^1.13.2"
+  }
+}
