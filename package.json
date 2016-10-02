@@ -4,6 +4,7 @@
   "description": "example of webpack image/svg imports",
   "main": "src/main.js",
   "scripts": {
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "jesse mcintosh",
