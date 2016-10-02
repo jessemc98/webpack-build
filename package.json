@@ -9,6 +9,12 @@
   "author": "jesse mcintosh",
   "license": "ISC",
   "devDependencies": {
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.16.0",
     "webpack": "^1.13.2"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.16.0"
   }
 }
