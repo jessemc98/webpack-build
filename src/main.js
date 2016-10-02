@@ -1,6 +1,6 @@
 import 'babel-polyfill'
 import list from './testList'
-import './index.css'
+import './index.scss'
 
 const header = document.createElement('h1')
 header.innerHTML = 'Im Working!'

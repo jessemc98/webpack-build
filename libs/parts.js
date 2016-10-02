@@ -44,8 +44,8 @@ exports.setupCSS = function(paths) {
     module: {
       loaders: [
         {
-          test: /\.css$/,
-          loaders: ['style', 'css'],
+          test: /\.(scss|css|sass)$/,
+          loaders: ['style', 'css', 'sass'],
           include: paths
         }
       ]
