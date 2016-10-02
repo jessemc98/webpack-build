@@ -1,4 +1,16 @@
 import 'babel-polyfill'
 import list from './testList'
 
-console.log(list)
+const header = document.createElement('h1')
+header.innerHTML = 'Im Working!'
+document.body.appendChild(header)
+
+const myList = document.createElement('ul')
+
+for(let i = 0; i < list.length; i++){
+	let li = document.createElement('li')
+	li.innerHTML = list[i]
+	myList.appendChild(li)
+}
+
+document.body.appendChild(myList)
