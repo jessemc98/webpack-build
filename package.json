@@ -4,6 +4,7 @@
   "description": "example of webpack image/svg imports",
   "main": "src/main.js",
   "scripts": {
+    "start": "webpack",
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,7 +16,8 @@
     "babel-preset-es2015": "^6.16.0",
     "html-webpack-plugin": "^2.22.0",
     "path": "^0.12.7",
-    "webpack": "^1.13.2"
+    "webpack": "^1.13.2",
+    "webpack-merge": "^0.14.1"
   },
   "dependencies": {
     "babel-polyfill": "^6.16.0"
