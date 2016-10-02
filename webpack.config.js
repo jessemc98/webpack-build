@@ -2,6 +2,8 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+const parts = require('./libs/parts')
+
 const merge = require('webpack-merge')
 const validate = require('webpack-validator')
 const PATHS = {
@@ -44,7 +46,13 @@ switch(process.env.npm_lifecycle_event) {
     });
     break;
   default:
-    config = merge(common, {});
+    config = merge(
+      common, 
+      parts.devServer({
+        host: process.env.HOST,
+        port: process.env.PORT
+      })
+    );
 }
 
 module.exports = validate(config);
