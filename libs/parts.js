@@ -36,6 +36,9 @@ exports.devServer = function(options) {
   };
 }
 
+// css-loader will resolve @import and url statements in our CSS files.
+// style-loader deals with require statements in our JavaScript. 
+// A similar approach works with CSS preprocessors, like Sass and Less, and their loaders.
 exports.setupCSS = function(paths) {
   return {
     module: {
