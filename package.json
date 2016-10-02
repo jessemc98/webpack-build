@@ -4,7 +4,7 @@
   "description": "example of webpack image/svg imports",
   "main": "src/main.js",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "webpack && webpack-dev-server",
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

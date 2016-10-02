@@ -34,6 +34,10 @@ switch(process.env.npm_lifecycle_event) {
     //minifys js for production//
     config = merge(
       common,
+      {
+        devtool: 'source-map'
+      },
+      parts.setupCSS(PATHS.app),
       parts.uglifyJs()
     );
     break;
@@ -41,11 +45,14 @@ switch(process.env.npm_lifecycle_event) {
   default:
     config = merge(
       common, 
+      {
+        devtool: 'eval-source-map'
+      },
+      parts.setupCSS(PATHS.app),
       parts.devServer({
         host: process.env.HOST,
         port: process.env.PORT
-      }),
-      parts.setupCSS(PATHS.app)
+      })
     );
 }
 
