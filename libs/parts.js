@@ -85,6 +85,11 @@ exports.setupImages = function(paths) {
           test: /\.(jpg|png)$/,
           loader: 'url?limit=25000',
           include: paths
+        },
+        {
+          test: /\.svg$/,
+          loader: 'file?name=[path][name].[hash].[ext]',
+          include: paths
         }
       ]
     }
@@ -96,7 +101,7 @@ exports.loadImages = function(paths) {
     module: {
       loaders: [
         {
-          test: /\.(jpg|png)$/,
+          test: /\.(jpg|png|svg)$/,
           loader: 'file?name=[path][name].[hash].[ext]',
           include: paths
         }

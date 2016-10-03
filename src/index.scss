@@ -15,7 +15,20 @@ ul {
 	background-color: #FFF7D4;
 	
 	li {
+		position: relative;
 		transition: all 5s linear;
 		color: blue; 
+		margin-bottom: 20px;
+			&::after{
+			content: " ";
+			display: block;
+			position: absolute;
+			top: 50%;
+			left: 0%;
+			background-image: url(../assets/images/github.svg);
+			background-size: contain;
+			width: 30px;
+			height: 30px;
+		}
 	}
 }
