@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const autoprefixer = require('autoprefixer')
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 exports.devServer = function(options) {
   return {
@@ -52,6 +53,17 @@ exports.browserSync = function() {
   }
 }
 
+exports.clean = function(path) {
+  return {
+    plugins: [
+      new CleanWebpackPlugin([path], {
+        // Without `root` CleanWebpackPlugin won't point to our
+        // project and will fail to work.
+        root: process.cwd()
+      })
+    ]
+  };
+}
 
 exports.extractCSS = function(paths) {
   return {
