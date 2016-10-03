@@ -1,4 +1,5 @@
-const webpack = require('webpack');
+const webpack = require('webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 exports.devServer = function(options) {
   return {
@@ -36,6 +37,25 @@ exports.devServer = function(options) {
   };
 }
 
+
+exports.extractCSS = function(paths) {
+  return {
+    module: {
+      loaders: [
+        // Extract CSS during build
+        {
+          test: /\.(scss|css|sass)$/,
+          loader: ExtractTextPlugin.extract('style', 'css!sass'),
+          include: paths
+        }
+      ]
+    },
+    plugins: [
+      // Output extracted CSS to a file
+      new ExtractTextPlugin('bundle.css')
+    ]
+  };
+}
 // css-loader will resolve @import and url statements in our CSS files.
 // style-loader deals with require statements in our JavaScript. 
 // A similar approach works with CSS preprocessors, like Sass and Less, and their loaders.

@@ -41,7 +41,7 @@ switch(process.env.npm_lifecycle_event) {
         'process.env.NODE_ENV',
         'production'
       ),
-      parts.setupCSS(PATHS.app),
+      parts.extractCSS(PATHS.app),
       parts.uglifyJs()
     );
     break;

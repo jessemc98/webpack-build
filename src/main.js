@@ -1,4 +1,5 @@
 import 'babel-polyfill'
+import React from 'react'
 import list from './testList'
 import './index.scss'
 
