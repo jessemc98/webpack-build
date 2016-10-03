@@ -67,10 +67,11 @@ switch(process.env.npm_lifecycle_event) {
       },
       parts.setupImages(PATHS.images),
       parts.setupCSS(PATHS.app),
-      parts.devServer({
-        host: process.env.HOST,
-        port: process.env.PORT
-      })
+      // parts.devServer({
+      //   host: process.env.HOST,
+      //   port: process.env.PORT
+      // })
+      parts.browserSync()
     );
 }
 

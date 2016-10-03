@@ -1,6 +1,7 @@
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const autoprefixer = require('autoprefixer')
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
 exports.devServer = function(options) {
   return {
@@ -36,6 +37,19 @@ exports.devServer = function(options) {
       })
     ]
   };
+}
+exports.browserSync = function() {
+  return {
+    plugins: [
+      new BrowserSyncPlugin({
+        // browse to http://localhost:3000/ during development, 
+        // ./bin directory is being served 
+        host: 'localhost',
+        port: 3000,
+        server: { baseDir: ['bin'] }
+      })
+    ]
+  }
 }
 
 
