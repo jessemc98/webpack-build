@@ -2,6 +2,7 @@ import 'babel-polyfill'
 import React from 'react'
 import list from './testList'
 import './index.scss'
+import icon from '../assets/images/webpack.png'
 
 const header = document.createElement('h1')
 header.innerHTML = 'Im Working!'
@@ -22,3 +23,8 @@ for(let i = 0; i < list.length; i++){
 }
 
 document.body.appendChild(myList)
+
+const img = document.createElement('img')
+
+img.src = icon;
+document.body.appendChild(img)
