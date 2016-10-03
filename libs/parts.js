@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const autoprefixer = require('autoprefixer')
 
 exports.devServer = function(options) {
   return {
@@ -45,10 +46,13 @@ exports.extractCSS = function(paths) {
         // Extract CSS during build
         {
           test: /\.(scss|css|sass)$/,
-          loader: ExtractTextPlugin.extract('style', 'css!sass'),
+          loader: ExtractTextPlugin.extract('style', 'css!postcss!sass'),
           include: paths
         }
       ]
+    },
+    postcss: function(){
+      return [autoprefixer]
     },
     plugins: [
       // Output extracted CSS to a file
