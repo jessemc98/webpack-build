@@ -25,6 +25,9 @@ const common = {
       loader: 'babel-loader'
     }]
   },
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
   plugins: [new HtmlWebpackPlugin()]
 }
 
