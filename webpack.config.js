@@ -48,6 +48,14 @@ switch(process.env.npm_lifecycle_event) {
       parts.loadImages(PATHS.images),
       parts.extractCSS(PATHS.app),
       parts.uglifyJs()
+      // {
+      //   resolve: {
+      //     alias: {
+      //       'react': 'react-lite',
+      //       'react-dom': 'react-lite'
+      //     }
+      //   }
+      // }
     );
     break;
 
