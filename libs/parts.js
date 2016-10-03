@@ -77,6 +77,34 @@ exports.setupCSS = function(paths) {
   }
 }
 
+exports.setupImages = function(paths) {
+  return {
+    module: {
+      loaders: [
+        {
+          test: /\.(jpg|png)$/,
+          loader: 'url?limit=25000',
+          include: paths
+        }
+      ]
+    }
+  }
+}
+
+exports.loadImages = function(paths) {
+  return {
+    module: {
+      loaders: [
+        {
+          test: /\.(jpg|png)$/,
+          loader: 'file?name=[path][name].[hash].[ext]',
+          include: paths
+        }
+      ]
+    }
+  }
+}
+
 exports.uglifyJs = function() {
   return {
     plugins: [

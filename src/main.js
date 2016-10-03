@@ -5,7 +5,13 @@ import './index.scss'
 
 const header = document.createElement('h1')
 header.innerHTML = 'Im Working!'
+
+const div = document.createElement('div')
+div.classList.add('icon')
+
 document.body.appendChild(header)
+document.body.appendChild(div)
+
 
 const myList = document.createElement('ul')
 

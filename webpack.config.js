@@ -8,7 +8,8 @@ const merge = require('webpack-merge')
 const validate = require('webpack-validator')
 const PATHS = {
   app: path.join(__dirname, 'src'),
-  build: path.join(__dirname, 'bin')
+  build: path.join(__dirname, 'bin'),
+  images: path.join(__dirname, 'assets', 'images')
 }
 
 const common = {
@@ -41,6 +42,7 @@ switch(process.env.npm_lifecycle_event) {
         'process.env.NODE_ENV',
         'production'
       ),
+      parts.loadImages(PATHS.images),
       parts.extractCSS(PATHS.app),
       parts.uglifyJs()
     );
@@ -52,6 +54,7 @@ switch(process.env.npm_lifecycle_event) {
       {
         devtool: 'eval-source-map'
       },
+      parts.setupImages(PATHS.images),
       parts.setupCSS(PATHS.app),
       parts.devServer({
         host: process.env.HOST,
