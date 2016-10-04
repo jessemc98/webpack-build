@@ -1,3 +1,5 @@
 node_modules
 bin
 .eslintcache
+tmp
+npm-debug.log

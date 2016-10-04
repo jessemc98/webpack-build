@@ -9,6 +9,7 @@ const validate = require('webpack-validator')
 const PATHS = {
   app: path.join(__dirname, 'src'),
   build: path.join(__dirname, 'bin'),
+  temp: path.join(__dirname, 'tmp'),
   css: path.join(__dirname, 'src', 'style'),
   images: path.join(__dirname, 'assets', 'images')
 }
@@ -16,10 +17,6 @@ const PATHS = {
 const common = {
   entry: {
     app: PATHS.app
-  },
-  output: {
-    path: PATHS.build,
-    filename: '[name].[chunkhash].js'
   },
   module: {
     loaders: [{
@@ -41,6 +38,12 @@ switch(process.env.npm_lifecycle_event) {
     //minifys js for production//
     config = merge(
       common,
+      {
+        output: {
+          path: PATHS.build,
+          filename: '[name].[chunkhash].js'
+        }
+      },
       {
         devtool: 'source-map'
       },
@@ -72,16 +75,21 @@ switch(process.env.npm_lifecycle_event) {
     config = merge(
       common, 
       {
+        output: {
+          path: PATHS.temp,
+          filename: '[name].js'
+        }
+      },
+      {
         devtool: 'eval-source-map'
       },
       parts.setupImages(PATHS.images),
       parts.setupCSS(PATHS.css),
-      // parts.devServer({
-      //   host: process.env.HOST,
-      //   port: process.env.PORT
-      // })
-      parts.browserSync(),
-      parts.lint(PATHS.app)
+      parts.lint(PATHS.app),
+      parts.devServer({
+        host: process.env.HOST,
+        port: process.env.PORT
+      })
     );
 }
 

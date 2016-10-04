@@ -4,7 +4,7 @@
   "description": "example of webpack image/svg imports",
   "main": "src/main.js",
   "scripts": {
-    "start": "webpack --watch",
+    "start": "webpack-dev-server",
     "build": "webpack",
     "test:lint": "eslint . --ext .js --ext .jsx --ignore-path .gitignore --cache",
     "test": "echo \"Error: no test specified\" && exit 1"
