@@ -65,6 +65,23 @@ exports.clean = function(path) {
   };
 }
 
+exports.extractBundle = function(options) {
+  const entry = {};
+  entry[options.name] = options.entries;
+
+  return {
+    // Define an entry point needed for splitting.
+    entry: entry,
+    plugins: [
+      // Extract bundle and manifest files. Manifest is
+      // needed for reliable caching.
+      new webpack.optimize.CommonsChunkPlugin({
+        names: [options.name, 'manifest']
+      })
+    ]
+  };
+}
+
 exports.extractCSS = function(paths) {
   return {
     module: {
@@ -82,7 +99,7 @@ exports.extractCSS = function(paths) {
     },
     plugins: [
       // Output extracted CSS to a file
-      new ExtractTextPlugin('bundle.css')
+      new ExtractTextPlugin('[name].[hash].min.css')
     ]
   };
 }

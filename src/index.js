@@ -1,7 +1,7 @@
-import 'babel-polyfill'
+// import 'babel-polyfill'
 import React from 'react'
 import list from './testList'
-import './index.scss'
+import './style/index.scss'
 import icon from '../assets/images/webpack.png'
 
 const header = document.createElement('h1')

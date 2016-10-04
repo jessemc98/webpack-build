@@ -9,14 +9,17 @@ const validate = require('webpack-validator')
 const PATHS = {
   app: path.join(__dirname, 'src'),
   build: path.join(__dirname, 'bin'),
+  css: path.join(__dirname, 'src', 'style'),
   images: path.join(__dirname, 'assets', 'images')
 }
 
 const common = {
-  entry: PATHS.app + '/main.js',
+  entry: {
+    app: PATHS.app
+  },
   output: {
     path: PATHS.build,
-    filename: 'bundle.js'
+    filename: '[name].[chunkhash].js'
   },
   module: {
     loaders: [{
@@ -46,8 +49,12 @@ switch(process.env.npm_lifecycle_event) {
         'process.env.NODE_ENV',
         'production'
       ),
+       parts.extractBundle({
+        name: 'vendor',
+        entries: ['react', 'babel-polyfill']
+      }),
       parts.loadImages(PATHS.images),
-      parts.extractCSS(PATHS.app),
+      parts.extractCSS(PATHS.css),
       parts.uglifyJs()
       // {
       //   resolve: {
@@ -67,7 +74,7 @@ switch(process.env.npm_lifecycle_event) {
         devtool: 'eval-source-map'
       },
       parts.setupImages(PATHS.images),
-      parts.setupCSS(PATHS.app),
+      parts.setupCSS(PsATHS.css),
       // parts.devServer({
       //   host: process.env.HOST,
       //   port: process.env.PORT
