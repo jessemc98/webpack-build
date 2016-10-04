@@ -44,6 +44,7 @@ switch(process.env.npm_lifecycle_event) {
       {
         devtool: 'source-map'
       },
+      parts.lint(PATHS.app),
       parts.clean(PATHS.build),
       parts.setFreeVariable(
         'process.env.NODE_ENV',
@@ -79,7 +80,8 @@ switch(process.env.npm_lifecycle_event) {
       //   host: process.env.HOST,
       //   port: process.env.PORT
       // })
-      parts.browserSync()
+      parts.browserSync(),
+      parts.lint(PATHS.app)
     );
 }
 

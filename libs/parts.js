@@ -103,6 +103,21 @@ exports.extractCSS = function(paths) {
     ]
   };
 }
+exports.lint = function(paths) {
+  return {
+    module: {
+      preLoaders: [
+        {
+          // the regex tests for js | jsx
+          test: /\.jsx?$/,
+          loaders: ['eslint'],
+          // define an include so we check just the files we need
+          include: paths
+        }
+      ]
+    }
+  }
+}
 // css-loader will resolve @import and url statements in our CSS files.
 // style-loader deals with require statements in our JavaScript. 
 // A similar approach works with CSS preprocessors, like Sass and Less, and their loaders.
