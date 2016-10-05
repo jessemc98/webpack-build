@@ -1,5 +1,5 @@
 {
-  "name": "import-images",
+  "name": "webpack-build-system",
   "version": "1.0.0",
   "description": "example of webpack image/svg imports",
   "main": "src/main.js",
