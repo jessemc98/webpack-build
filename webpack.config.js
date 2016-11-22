@@ -10,7 +10,7 @@ const PATHS = {
   app: path.join(__dirname, 'src'),
   build: path.join(__dirname, 'bin'),
   temp: path.join(__dirname, 'tmp'),
-  css: path.join(__dirname, 'src', 'style'),
+  css: path.join(__dirname, 'src'),
   images: path.join(__dirname, 'assets', 'images')
 }
 
@@ -73,7 +73,7 @@ switch(process.env.npm_lifecycle_event) {
 
   default:
     config = merge(
-      common, 
+      common,
       {
         output: {
           path: PATHS.temp,
