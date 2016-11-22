@@ -8,7 +8,7 @@
     "build": "webpack",
     "serve": "webpack-dev-server",
     "test:lint": "eslint . --ext .js --ext .jsx --ignore-path .gitignore --cache",
-    "test": "mocha --reporter progress libs/test.js src/**/*.test.js",
+    "test": "mocha --reporter progress libs/test.js src/**/*.test.js src/**/**/*.test.js",
     "test:watch": "npm test -- --watch"
   },
   "author": "jesse mcintosh",
