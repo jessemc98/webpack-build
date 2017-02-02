@@ -26,7 +26,7 @@ const common = {
     }]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
   plugins: [new HtmlWebpackPlugin()]
 }
