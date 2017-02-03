@@ -89,13 +89,17 @@ exports.extractCSS = function(paths) {
         // Extract CSS during build
         {
           test: /\.(scss|css|sass)$/,
-          loader: ExtractTextPlugin.extract('style', 'css!postcss!sass'),
+          use: ExtractTextPlugin.extract({
+            fallbackLoader: 'style-loader',
+            loader: [
+              'css-loader',
+              'postcss-loader',
+              'sass-loader'
+            ]
+          }),
           include: paths
         }
       ]
-    },
-    postcss: function(){
-      return [autoprefixer]
     },
     plugins: [
       // Output extracted CSS to a file
