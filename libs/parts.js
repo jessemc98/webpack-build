@@ -43,8 +43,8 @@ exports.browserSync = function() {
   return {
     plugins: [
       new BrowserSyncPlugin({
-        // browse to http://localhost:3000/ during development, 
-        // ./bin directory is being served 
+        // browse to http://localhost:3000/ during development,
+        // ./bin directory is being served
         host: 'localhost',
         port: 3000,
         server: { baseDir: ['bin'] }
@@ -85,17 +85,21 @@ exports.extractBundle = function(options) {
 exports.extractCSS = function(paths) {
   return {
     module: {
-      loaders: [
+      rules: [
         // Extract CSS during build
         {
           test: /\.(scss|css|sass)$/,
-          loader: ExtractTextPlugin.extract('style', 'css!postcss!sass'),
+          use: ExtractTextPlugin.extract({
+            fallbackLoader: 'style-loader',
+            loader: [
+              'css-loader',
+              'postcss-loader',
+              'sass-loader'
+            ]
+          }),
           include: paths
         }
       ]
-    },
-    postcss: function(){
-      return [autoprefixer]
     },
     plugins: [
       // Output extracted CSS to a file
@@ -106,11 +110,12 @@ exports.extractCSS = function(paths) {
 exports.lint = function(paths) {
   return {
     module: {
-      preLoaders: [
+      rules: [
         {
           // the regex tests for js | jsx
           test: /\.jsx?$/,
-          loaders: ['eslint'],
+          enforce: 'pre',
+          loader: 'eslint-loader',
           // define an include so we check just the files we need
           include: paths
         }
@@ -119,15 +124,19 @@ exports.lint = function(paths) {
   }
 }
 // css-loader will resolve @import and url statements in our CSS files.
-// style-loader deals with require statements in our JavaScript. 
+// style-loader deals with require statements in our JavaScript.
 // A similar approach works with CSS preprocessors, like Sass and Less, and their loaders.
 exports.setupCSS = function(paths) {
   return {
     module: {
-      loaders: [
+      rules: [
         {
           test: /\.(scss|css|sass)$/,
-          loaders: ['style', 'css', 'sass'],
+          use: [
+            'style-loader',
+            'css-loader',
+            'sass-loader'
+          ],
           include: paths
         }
       ]
@@ -138,15 +147,25 @@ exports.setupCSS = function(paths) {
 exports.setupImages = function(paths) {
   return {
     module: {
-      loaders: [
+      rules: [
         {
           test: /\.(jpg|png)$/,
-          loader: 'url?limit=25000',
+          use: {
+            loader: 'url-loader',
+            options: {
+              limit: '25000'
+            }
+          },
           include: paths
         },
         {
           test: /\.svg$/,
-          loader: 'file?name=[path][name].[hash].[ext]',
+          use: {
+            loader: 'file-loader',
+            options: {
+              name: '[path][name].[hash].[ext]'
+            }
+          },
           include: paths
         }
       ]
@@ -157,10 +176,15 @@ exports.setupImages = function(paths) {
 exports.loadImages = function(paths) {
   return {
     module: {
-      loaders: [
+      rules: [
         {
           test: /\.(jpg|png|svg)$/,
-          loader: 'file?name=[path][name].[hash].[ext]',
+          use: {
+            loader: 'file-loader',
+            options: {
+              name: '[path][name].[hash].[ext]'
+            }
+          },
           include: paths
         }
       ]
@@ -173,6 +197,7 @@ exports.uglifyJs = function() {
     plugins: [
       new webpack.optimize.UglifyJsPlugin(
         {
+          sourceMap: true,
           compress: {
             warnings: false,
           },

@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const parts = require('./libs/parts')
 
 const merge = require('webpack-merge')
-const validate = require('webpack-validator')
+
 const PATHS = {
   app: path.join(__dirname, 'src'),
   build: path.join(__dirname, 'bin'),
@@ -19,14 +19,16 @@ const common = {
     app: PATHS.app
   },
   module: {
-    loaders: [{
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loader: 'babel-loader'
-    }]
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader'
+      }
+    ]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
   plugins: [new HtmlWebpackPlugin()]
 }
@@ -45,6 +47,11 @@ switch(process.env.npm_lifecycle_event) {
         }
       },
       {
+        plugins: [
+          new webpack.LoaderOptionsPlugin({
+            minimize: true
+          })
+        ],
         devtool: 'source-map'
       },
       parts.lint(PATHS.app),
@@ -93,4 +100,4 @@ switch(process.env.npm_lifecycle_event) {
     );
 }
 
-module.exports = validate(config);
+module.exports = config;
