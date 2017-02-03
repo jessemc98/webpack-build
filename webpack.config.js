@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const parts = require('./libs/parts')
 
 const merge = require('webpack-merge')
-const validate = require('webpack-validator')
+
 const PATHS = {
   app: path.join(__dirname, 'src'),
   build: path.join(__dirname, 'bin'),
@@ -95,4 +95,4 @@ switch(process.env.npm_lifecycle_event) {
     );
 }
 
-module.exports = validate(config);
+module.exports = config;
