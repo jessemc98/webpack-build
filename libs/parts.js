@@ -110,11 +110,12 @@ exports.extractCSS = function(paths) {
 exports.lint = function(paths) {
   return {
     module: {
-      preLoaders: [
+      rules: [
         {
           // the regex tests for js | jsx
           test: /\.jsx?$/,
-          loaders: ['eslint'],
+          enforce: 'pre'
+          loader: 'eslint',
           // define an include so we check just the files we need
           include: paths
         }
