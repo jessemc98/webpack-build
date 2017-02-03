@@ -197,6 +197,7 @@ exports.uglifyJs = function() {
     plugins: [
       new webpack.optimize.UglifyJsPlugin(
         {
+          sourceMap: true,
           compress: {
             warnings: false,
           },

@@ -47,6 +47,11 @@ switch(process.env.npm_lifecycle_event) {
         }
       },
       {
+        plugins: [
+          new webpack.LoaderOptionsPlugin({
+            minimize: true
+          })
+        ],
         devtool: 'source-map'
       },
       parts.lint(PATHS.app),
