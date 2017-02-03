@@ -114,8 +114,8 @@ exports.lint = function(paths) {
         {
           // the regex tests for js | jsx
           test: /\.jsx?$/,
-          enforce: 'pre'
-          loader: 'eslint',
+          enforce: 'pre',
+          loader: 'eslint-loader',
           // define an include so we check just the files we need
           include: paths
         }
